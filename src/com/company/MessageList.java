@@ -3,7 +3,13 @@ import java.util.*;
 
 public class MessageList {
 
-    private List<Message> mList = new ArrayList<>();
+    public List<Message> mList = new ArrayList<>();
+    public String pNum;
+
+    public MessageList(String pNum)
+    {
+        this.pNum = pNum;
+    }
 
     public void AddMessage(Message m)
     {
