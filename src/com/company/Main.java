@@ -1,7 +1,4 @@
 package com.company;
-import com.sun.org.apache.xml.internal.security.Init;
-
-import javax.xml.stream.events.StartDocument;
 import java.util.*;
 
 public class Main {
@@ -49,6 +46,7 @@ public class Main {
         String in = scan.nextLine();
         in = scan.nextLine(); // WTJ
         MessageList mConvo = new MessageList(in);
+        System.out.println("Conversation with " + mConvo.pNum + ". Type exit to exit conversation.");
         conversations.add(mConvo);
         StartConversation(mConvo);
     }
@@ -61,10 +59,10 @@ public class Main {
             in2 = scan.nextLine();
             if (!in2.equalsIgnoreCase("exit") && in2.length() > 0)
             {
-                mConvo.AddMessage(new Message(mConvo.pNum, in2, System.currentTimeMillis()));
+                mConvo.AddMessage(new Message(mConvo.pNum, in2));
                 if (rand.nextDouble() > 0.5)
                 {
-                    mConvo.AddMessage(new Message("you", "*really cool response*", System.currentTimeMillis()));
+                    mConvo.AddMessage(new Message("you", "*really cool response*"));
                     System.out.println("*really cool response*");
                 }
             }
@@ -76,15 +74,23 @@ public class Main {
     {
         if (conversations.size() > 0)
         {
-            System.out.println("Select a conversation.");
+            System.out.println("Select a conversation to open. Add a - in front of the number to delete the conversation.");
             for (int i = 0; i < conversations.size(); i++)
             {
                 System.out.println((i + 1) + ". " + conversations.get(i).pNum);
             }
-            int ind = scan.nextInt();
-            if (ind > 0 && ind <= conversations.size())
+            String ind = scan.nextLine();
+            ind = scan.nextLine(); // WTJ
+            int b = Integer.parseInt(ind.replace("-", ""));
+            if (ind.contains("-"))
             {
-                ResumeConversation(ind - 1);
+                System.out.println(b - 1);
+                System.out.println(conversations.size());
+                RemoveConversation(b - 1);
+            }
+            else if (b > 0 && b <= conversations.size())
+            {
+                ResumeConversation(b - 1);
             }
             else
             {
@@ -107,6 +113,13 @@ public class Main {
             System.out.println(m.pMessage);
         }
         StartConversation(convo);
+    }
+
+    public static void RemoveConversation(int index)
+    {
+        conversations.remove(index);
+        System.out.println("Conversation with " + conversations.get(index).pNum + " removed.");
+        Menu();
     }
 
     public static void main(String[] args)
