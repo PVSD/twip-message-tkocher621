@@ -1,19 +1,24 @@
 package com.company;
+import java.util.*;
 
-/**
- * Created by tk304 on 2/4/19.
- */
 public class Message {
 
     String pNumber;
     String pMessage;
     long pTime;
 
-    public Mesage(String pNumber, String pMessage, long pTime)
+    public Message(String pNumber, String pMessage)
     {
         this.pNumber = pNumber;
         this.pMessage = pMessage;
-        this.pTime = pTime;
+        this.pTime = GetTime();
+    }
+
+    public long GetTime()
+    {
+        Date d = new Date();
+        String time = d.toString();
+        return Long.parseLong(time.substring(11, 13) + time.substring(14, 16) + time.substring(17, 19));
     }
 
 }
