@@ -14,6 +14,12 @@ public class Message {
         this.pTime = GetTime();
     }
 
+    public String GetMessage()
+    {
+        String a = Long.toString(pTime);
+        return "[" + a.substring(0, 2) + ":" + a.substring(2, 4) + ":" + a.substring(4, 6) + "] " + ((!pNumber.equalsIgnoreCase("you")) ? "You" : pTime) + ": " + pMessage;
+    }
+
     public long GetTime()
     {
         Date d = new Date();
