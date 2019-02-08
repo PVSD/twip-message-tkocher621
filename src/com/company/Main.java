@@ -34,14 +34,14 @@ public class Main {
         String in = scan.nextLine();
         in = scan.nextLine(); // WTJ
         MessageList mConvo = new MessageList(in);
-        System.out.println("[" + mConvo.pNum + "]\n-exit: exit conversation\n-clear: clear conversation\n-remove: remove a message\n--------------------------------------------");
+        System.out.println("[" + mConvo.pNum + "]\n-exit: exit conversation\n-clear: clear conversation\n-remove: remove a message\n-move: move a message to another chat\n--------------------------------------------");
         conversations.add(mConvo);
         StartConversation(mConvo);
     }
 
     public static void RefreshChat(MessageList chat)
     {
-        System.out.println("[" + chat.pNum + "]\n-exit: exit conversation\n-clear: clear conversation\n-remove: remove a message\n--------------------------------------------");
+        System.out.println("[" + chat.pNum + "]\n-exit: exit conversation\n-clear: clear conversation\n-remove: remove a message\n-move: move a message to another chat\n--------------------------------------------");
         chat.DisplayMessages();
     }
 
@@ -123,7 +123,7 @@ public class Main {
     public static void ResumeConversation(int index)
     {
         MessageList convo = conversations.get(index);
-        System.out.println("[" + convo.pNum + "]\n-exit: exit conversation\n-clear: clear conversation\n-remove: remove a message\n--------------------------------------------");
+        System.out.println("[" + convo.pNum + "]\n-exit: exit conversation\n-clear: clear conversation\n-remove: remove a message\n-move: move a message to another chat\n--------------------------------------------");
         convo.DisplayMessages();
         StartConversation(convo);
     }
